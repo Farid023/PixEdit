@@ -4,4 +4,4 @@ Photo Editor is a powerful and user-friendly photo editing app that allows you t
 
 
 ## 🎬 Demo
-![Demo](https://www.mediafire.com/file/8ardnij6ueti6vi/demo.gif)
+![Demo](https://www.mediafire.com/file/8ardnij6ueti6vi/demo.gif/file)
