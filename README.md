@@ -4,4 +4,4 @@ Photo Editor is a powerful and user-friendly photo editing app that allows you t
 
 
 ## 🎬 Demo
-![Demo](https://drive.google.com/file/d/1KbW5y3u-nplHbZQdCcq8nT2pYrvIu4A2/view?usp=drive_link)
+![Demo](https://drive.google.com/uc?export=download&id=1g6XtpHu0gGr2PuVSNY214Gw4TpAC6-wC)
