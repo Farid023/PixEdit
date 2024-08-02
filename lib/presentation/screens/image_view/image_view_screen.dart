@@ -1,0 +1,130 @@
+import 'dart:developer';
+import 'dart:typed_data';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:photo_editor/core/constants/app_colors.dart';
+import 'package:photo_editor/core/constants/app_paddings.dart';
+import 'package:photo_editor/core/constants/app_strings.dart';
+import 'package:photo_editor/core/extensions/context_extensions.dart';
+import 'package:photo_editor/core/navigation/pages.dart';
+import 'package:photo_editor/presentation/screens/image_view/cubit/image_view_cubit.dart';
+import 'package:photo_editor/presentation/widgets/custom_button.dart';
+import 'package:photo_editor/presentation/widgets/loading_indicator_circular.dart';
+import 'package:photo_editor/presentation/widgets/snackbars.dart';
+
+import '../../../domain/models/images.dart';
+import '../../widgets/custom_network_image.dart';
+
+class ImageViewScreen extends StatelessWidget {
+  const ImageViewScreen({super.key, this.item, this.imageBytes});
+
+  final Photo? item;
+  final Uint8List? imageBytes;
+
+  @override
+  Widget build(BuildContext context) {
+    final cubit = context.read<ImageViewCubit>();
+    final imageUrl = item?.src?.original;
+    Uint8List? bytes;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(AppStrings.image),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                if (imageUrl != null) {
+                  bytes = await cubit.getBytesFromUrl(imageUrl);
+                  await cubit.shareImage(imageBytes: bytes!);
+                } else if (imageBytes != null) {
+                  await cubit.shareImage(imageBytes: imageBytes!);
+                }
+              },
+              icon: const Icon(Icons.share),
+              color: AppColors.black)
+        ],
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          DecoratedBox(
+            decoration: const BoxDecoration(color: Colors.black),
+            child: Center(
+                child: SizedBox(
+              height: context.fullHeight * 0.6,
+              child: imageBytes != null
+                  ? Image.memory(imageBytes!, fit: BoxFit.fitWidth)
+                  : (item != null
+                      ? CustomNetworkImage(
+                          errorListener: (error) async {
+                            log("CustomNetworkImage: $error");
+                            await cubit.setError("$error");
+                          },
+                          downloadListener: (progress) async {
+                            if (progress != null) {
+                              await cubit.setLoading();
+                            } else {
+                              await cubit.resetState();
+                            }
+                          },
+                          imageUrl: imageUrl ?? "",
+                          fit: BoxFit.fitWidth)
+                      : const Center(child: Text(AppStrings.noImageAvailable))),
+            )),
+          ),
+          const SizedBox(height: 20),
+          BlocConsumer<ImageViewCubit, ImageViewState>(
+            builder: (context, state) {
+              if (state is ImageViewFailure) {
+                return const Padding(
+                  padding: AppPaddings.a24,
+                  child: Center(
+                    child: Text(
+                      AppStrings.errorText,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                );
+              } else if (state is ImageViewLoading) {
+                return const Padding(
+                  padding: AppPaddings.a24,
+                  child: LoadingIndicatorCircular(),
+                );
+              } else if (state is ImageViewSuccess ||
+                  state is ImageSaveSuccess ||
+                  imageBytes != null) {
+                return Column(
+                  children: [
+                    CustomButton(
+                        onPressed: () {
+                          context.to(Pages.editImageScreen(
+                              item: item, imageBytes: imageBytes));
+                        },
+                        text: AppStrings.editImage),
+                    CustomButton(
+                        onPressed: () async {
+                          await cubit.saveToLocalDB(
+                              imageBytes: imageBytes, imageUrl: imageUrl);
+                        },
+                        text: AppStrings.saveToGallery),
+                  ],
+                );
+              }
+              return const SizedBox.shrink();
+            },
+            listener: (BuildContext context, ImageViewState state) {
+              if (state is ImageSaveSuccess) {
+                ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+                    context: context,
+                    message: AppStrings.successfullySaved,
+                    label: "",
+                    onActionPressed: () {}));
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
