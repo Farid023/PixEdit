@@ -13,7 +13,7 @@ final class GalleryLoading extends GalleryState {
 }
 
 final class GallerySuccess extends GalleryState {
-  final List<Uint8List>? photos;
+  final List<String>? photos;
 
 
   GallerySuccess({required this.photos});

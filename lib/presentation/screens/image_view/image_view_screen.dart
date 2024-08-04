@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -17,28 +18,27 @@ import '../../../domain/models/images.dart';
 import '../../widgets/custom_network_image.dart';
 
 class ImageViewScreen extends StatelessWidget {
-  const ImageViewScreen({super.key, this.item, this.imageBytes});
+  const ImageViewScreen(
+      {super.key, this.item, this.imageBytes, this.imagePath});
 
   final Photo? item;
   final Uint8List? imageBytes;
+  final String? imagePath;
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ImageViewCubit>();
     final imageUrl = item?.src?.original;
-    Uint8List? bytes;
     return Scaffold(
       appBar: AppBar(
         title: const Text(AppStrings.image),
         actions: [
           IconButton(
               onPressed: () async {
-                if (imageUrl != null) {
-                  bytes = await cubit.getBytesFromUrl(imageUrl);
-                  await cubit.shareImage(imageBytes: bytes!);
-                } else if (imageBytes != null) {
-                  await cubit.shareImage(imageBytes: imageBytes!);
-                }
+                await cubit.shareImage(
+                    imageBytes: imageBytes,
+                    imagePath: imagePath,
+                    imageUrl: imageUrl);
               },
               icon: const Icon(Icons.share),
               color: AppColors.black)
@@ -52,24 +52,27 @@ class ImageViewScreen extends StatelessWidget {
             child: Center(
                 child: SizedBox(
               height: context.fullHeight * 0.6,
-              child: imageBytes != null
-                  ? Image.memory(imageBytes!, fit: BoxFit.fitWidth)
-                  : (item != null
-                      ? CustomNetworkImage(
-                          errorListener: (error) async {
-                            log("CustomNetworkImage: $error");
-                            await cubit.setError("$error");
-                          },
-                          downloadListener: (progress) async {
-                            if (progress != null) {
-                              await cubit.setLoading();
-                            } else {
-                              await cubit.resetState();
-                            }
-                          },
-                          imageUrl: imageUrl ?? "",
-                          fit: BoxFit.fitWidth)
-                      : const Center(child: Text(AppStrings.noImageAvailable))),
+              child: imagePath != null
+                  ? Image.file(File(imagePath!))
+                  : imageBytes != null
+                      ? Image.memory(imageBytes!, fit: BoxFit.fitWidth)
+                      : (item != null
+                          ? CustomNetworkImage(
+                              errorListener: (error) async {
+                                log("CustomNetworkImage: $error");
+                                await cubit.setError("$error");
+                              },
+                              downloadListener: (progress) async {
+                                if (progress != null) {
+                                  await cubit.setLoading();
+                                } else {
+                                  await cubit.resetState();
+                                }
+                              },
+                              imageUrl: imageUrl ?? "",
+                              fit: BoxFit.fitWidth)
+                          : const Center(
+                              child: Text(AppStrings.noImageAvailable))),
             )),
           ),
           const SizedBox(height: 20),
@@ -93,13 +96,16 @@ class ImageViewScreen extends StatelessWidget {
                 );
               } else if (state is ImageViewSuccess ||
                   state is ImageSaveSuccess ||
-                  imageBytes != null) {
+                  imageBytes != null ||
+                  imagePath != null) {
                 return Column(
                   children: [
                     CustomButton(
                         onPressed: () {
                           context.to(Pages.editImageScreen(
-                              item: item, imageBytes: imageBytes));
+                              item: item,
+                              imageBytes: imageBytes,
+                              imagePath: imagePath));
                         },
                         text: AppStrings.editImage),
                     CustomButton(
@@ -115,6 +121,8 @@ class ImageViewScreen extends StatelessWidget {
             },
             listener: (BuildContext context, ImageViewState state) {
               if (state is ImageSaveSuccess) {
+
+
                 ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
                     context: context,
                     message: AppStrings.successfullySaved,

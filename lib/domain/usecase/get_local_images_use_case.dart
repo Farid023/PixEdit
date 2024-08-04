@@ -8,7 +8,7 @@ class GetLocalImagesUseCase {
   final ImagesLocalRepository imagesLocalRepository;
 
 
-  Future<List<Uint8List>?> execute(){
+  Future<List<String>?> execute(){
     return imagesLocalRepository.getLocalImages();
   }
 }

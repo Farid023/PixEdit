@@ -21,11 +21,13 @@ class Pages {
   static Widget get home => BlocProvider(
       create: (context) => NavBarCubit(), child: const HomeScreen());
 
-  static Widget imageViewScreen({Photo? item, Uint8List? imageBytes}) =>
+  static Widget imageViewScreen(
+          {Photo? item, Uint8List? imageBytes, String? imagePath}) =>
       BlocProvider(
         create: (context) =>
             ImageViewCubit(locator(), locator(), locator())..resetState(),
-        child: ImageViewScreen(item: item, imageBytes: imageBytes),
+        child: ImageViewScreen(
+            item: item, imageBytes: imageBytes, imagePath: imagePath),
       );
 
   static Widget get discoverImages => BlocProvider(
@@ -36,9 +38,11 @@ class Pages {
       create: (context) => GalleryCubit(locator(), locator())..getLocalImages(),
       child: const GalleryScreen());
 
-  static Widget editImageScreen({Photo? item, Uint8List? imageBytes}) =>
+  static Widget editImageScreen(
+          {Photo? item, Uint8List? imageBytes, String? imagePath}) =>
       BlocProvider(
         create: (context) => ImageViewCubit(locator(), locator(), locator()),
-        child: EditImageScreen(item: item, imageBytes: imageBytes),
+        child: EditImageScreen(
+            item: item, imageBytes: imageBytes, imagePath: imagePath),
       );
 }

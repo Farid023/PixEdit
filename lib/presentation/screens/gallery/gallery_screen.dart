@@ -41,7 +41,7 @@ class GalleryScreen extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              List<Uint8List> photos = [];
+              List<String> photos = [];
               if (state is GalleryLoading) {
                 return const LoadingIndicatorCircular();
               }
@@ -64,7 +64,7 @@ class GalleryScreen extends StatelessWidget {
                     }
                     final item = photos[index - 1];
                     log("item: $item");
-                    return GalleryImageCard(item: item);
+                    return GalleryImageCard(imagePath: item);
                   });
             },
           )),

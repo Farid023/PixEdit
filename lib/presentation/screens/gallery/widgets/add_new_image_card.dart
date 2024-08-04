@@ -20,7 +20,6 @@ class AddNewImageCard extends StatelessWidget {
       child: InkWell(
           onTap: () async {
             await cubit.pickImage()?.then((imageBytes) {
-              log(imageBytes.toString());
               if (imageBytes != null) {
                 context.to(Pages.imageViewScreen(imageBytes: imageBytes));
               }

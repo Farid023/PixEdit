@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -43,16 +44,30 @@ class ImageViewCubit extends Cubit<ImageViewState> {
     }
   }
 
-    Future<void> shareImage({required Uint8List imageBytes}) async{
+  Future<void> shareImage({
+    String? imageUrl,
+    Uint8List? imageBytes,
+    String? imagePath,
+  }) async {
     try {
       emit(ImageViewLoading());
-     final share = await _shareImageUseCase.execute(imageBytes: imageBytes);
-      emit(ImageViewSuccess());
-      //return
-    } catch (e) {
-      log("$e");
-      emit(ImageViewFailure(message: e.toString()));
+      Uint8List? bytes;
+      if (imageUrl != null) {
+        bytes = await getBytesFromUrl(imageUrl);
+      } else if (imageBytes != null) {
+        bytes = imageBytes;
+      } else if (imagePath != null) {
+        bytes = await File(imagePath).readAsBytes();
+      }
 
+      if (bytes != null) {
+        await _shareImageUseCase.execute(imageBytes: bytes);
+        emit(ImageViewSuccess());
+      } else {
+        emit(ImageViewFailure(message: 'No image available to share.'));
+      }
+    } catch (e) {
+      emit(ImageViewFailure(message: 'Failed to share image: ${e.toString()}'));
     }
   }
 
@@ -62,7 +77,7 @@ class ImageViewCubit extends Cubit<ImageViewState> {
 
   Future<void> saveImageBytes({Uint8List? bytes}) async {
     imageBytes = bytes;
-    log("imagebytes : $imageBytes");
+    log("imageBytes : $imageBytes");
   }
 
   Future<void> setError(String message) async {

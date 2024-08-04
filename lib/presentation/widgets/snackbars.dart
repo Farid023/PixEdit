@@ -8,7 +8,7 @@ SnackBar customSnackBar(
   return SnackBar(
     dismissDirection: DismissDirection.horizontal,
     behavior: SnackBarBehavior.floating,
-    duration: const Duration(seconds: 8),
+   // duration: const Duration(seconds: 8),
     content: Text(message),
     action: SnackBarAction(
       label: label,

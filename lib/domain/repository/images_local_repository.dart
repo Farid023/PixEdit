@@ -5,7 +5,7 @@ abstract class ImagesLocalRepository {
 
   Future<void> saveImages(Uint8List imageBytes);
 
-  Future<List<Uint8List>?> getLocalImages();
+  Future<List<String>?> getLocalImages();
 
   Future<Uint8List?> pickImage();
 

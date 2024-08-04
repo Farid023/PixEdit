@@ -11,12 +11,12 @@ import 'package:share_plus/share_plus.dart';
 
 class ImagesLocalRepositoryImpl implements ImagesLocalRepository {
   @override
-  Future<List<Uint8List>?> getLocalImages() async {
+  Future<List<String>?> getLocalImages() async {
     try {
       final box = await Hive.openBox("imagesDB");
       List<dynamic>? images = box.get("images");
       if (images != null) {
-        return List<Uint8List>.from(images);
+        return List<String>.from(images);
       }
       return null;
     } catch (e, s) {
@@ -29,17 +29,18 @@ class ImagesLocalRepositoryImpl implements ImagesLocalRepository {
   @override
   Future<void> saveImages(Uint8List imageBytes) async {
     try {
-      List<Uint8List> images = [];
-
-      final box = await Hive.openBox("imagesDB");
-      List<dynamic>? allImages = box.get("images");
-
-      if (allImages != null) {
-        images = List<Uint8List>.from(allImages);
+      List<String> images = [];
+      final imagePath = await saveImageToStorage(imageBytes);
+      if (imagePath != null) {
+        final box = await Hive.openBox("imagesDB");
+        List<dynamic>? allImages = box.get("images");
+        if (allImages != null) {
+          images = List<String>.from(allImages);
+        }
+        images.add(imagePath);
+        await box.put("images", images);
+        log("Success to save LocalDB");
       }
-      images.add(imageBytes);
-      await box.put("images", images);
-      log("Success to save LocalDB");
     } catch (e, s) {
       log("saveImages $s");
       log("saveImages $e");
@@ -66,6 +67,7 @@ class ImagesLocalRepositoryImpl implements ImagesLocalRepository {
   @override
   Future<void> shareImage({required Uint8List imageBytes}) async {
     try {
+
       final tempDir = await getTemporaryDirectory();
       final file = await File('${tempDir.path}/shared_image.jpg').create();
       await file.writeAsBytes(imageBytes);
@@ -74,6 +76,20 @@ class ImagesLocalRepositoryImpl implements ImagesLocalRepository {
           text: AppStrings.checkOutThisImage);
     } catch (e) {
       log('Error sharing image: $e');
+    }
+  }
+
+  Future<String?> saveImageToStorage(Uint8List imageBytes) async {
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      final filePath = '${directory.path}/${DateTime.now()}';
+      final file = File(filePath);
+      await file.writeAsBytes(imageBytes);
+      log('Image saved in $filePath');
+      return filePath;
+    } catch (e) {
+      log('Error when saving image: $e');
+      return null;
     }
   }
 }
