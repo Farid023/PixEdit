@@ -12,7 +12,6 @@ import 'package:photo_editor/core/navigation/pages.dart';
 import 'package:photo_editor/presentation/screens/image_view/cubit/image_view_cubit.dart';
 import 'package:photo_editor/presentation/widgets/custom_button.dart';
 import 'package:photo_editor/presentation/widgets/loading_indicator_circular.dart';
-import 'package:photo_editor/presentation/widgets/snackbars.dart';
 
 import '../../../domain/models/images.dart';
 import '../../widgets/custom_network_image.dart';
@@ -121,13 +120,26 @@ class ImageViewScreen extends StatelessWidget {
             },
             listener: (BuildContext context, ImageViewState state) {
               if (state is ImageSaveSuccess) {
-
-
-                ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+                showAdaptiveDialog(
                     context: context,
-                    message: AppStrings.successfullySaved,
-                    label: "",
-                    onActionPressed: () {}));
+                    builder: (BuildContext _) {
+                      return AlertDialog.adaptive(
+                        title: const Text(AppStrings.successfullySaved),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                context.back();
+                              },
+                              child: const Text(
+                                "OK",
+                                style: TextStyle(color: AppColors.black),
+                              ))
+                        ],
+                      );
+                    });
+
               }
             },
           ),
