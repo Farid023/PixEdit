@@ -4,6 +4,7 @@ import 'package:photo_editor/core/constants/app_strings.dart';
 import 'package:photo_editor/presentation/widgets/bottom_nav_bar/cubit/nav_bar_cubit.dart';
 
 import '../../widgets/bottom_nav_bar/bottom_navbar.dart';
+import '../discover_images/widgets/info_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,6 +21,11 @@ class HomeScreen extends StatelessWidget {
                 : currentIndex == 1
                     ? AppStrings.gallery
                     : ""),
+            actions: [
+              if (currentIndex == 0) ...[
+                const InfoButton(),
+              ]
+            ],
           ),
           body: cubit.bodyWidgets[currentIndex],
           floatingActionButton: BottomNavbar(

@@ -23,7 +23,7 @@ class ImagesRepositoryImpl implements ImagesRepository {
       {int? page = 1, int? perPage, String? pathUrl}) async {
     try {
       final response = await dio.get(pathUrl ?? "",
-          queryParameters: {"page": page, "per_page": perPage ?? 10});
+          queryParameters: {"page": page, "per_page": perPage ?? 30});
 
       if (response.statusCode == 200) {
         final images = Images.fromJson(response.data);

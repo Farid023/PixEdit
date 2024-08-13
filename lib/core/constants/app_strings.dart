@@ -13,4 +13,6 @@ class AppStrings{
   static const saveToGallery = "Save to Gallery";
   static const successfullySaved = "Successfully saved";
   static const checkOutThisImage = "Check out this image!";
+  static const pexels = "Pexels";
+  static const photosProvidedBy = "Photos provided by";
 }

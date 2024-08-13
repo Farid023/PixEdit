@@ -9,7 +9,9 @@ class LoadingIndicatorCircular extends StatelessWidget {
     return const Padding(
       padding: AppPaddings.a8,
       child: Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator(
+          color: Colors.black,
+        ),
       ),
     );
   }
