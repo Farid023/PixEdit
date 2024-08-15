@@ -1,10 +1,10 @@
+import 'package:PixEdit/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:photo_editor/core/constants/app_borders.dart';
-import 'package:photo_editor/core/extensions/context_extensions.dart';
-import 'package:photo_editor/presentation/screens/gallery/cubit/gallery_cubit.dart';
 
+import '../../../../core/constants/app_borders.dart';
 import '../../../../core/navigation/pages.dart';
+import '../cubit/gallery_cubit.dart';
 
 class AddNewImageCard extends StatelessWidget {
   const AddNewImageCard({super.key});

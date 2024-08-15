@@ -1,5 +1,5 @@
-import 'package:photo_editor/domain/models/images.dart';
 
+import '../models/images.dart';
 import '../repository/images_repository.dart';
 
 class GetImagesUseCase {

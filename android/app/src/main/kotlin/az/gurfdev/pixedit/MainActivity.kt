@@ -1,4 +1,4 @@
-package az.gurfdev.photoeditor.photo_editor
+package az.gurfdev.pixedit
 
 import io.flutter.embedding.android.FlutterActivity
 

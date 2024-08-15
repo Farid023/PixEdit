@@ -1,4 +1,4 @@
-import 'package:photo_editor/domain/repository/images_local_repository.dart';
+import '../repository/images_local_repository.dart';
 
 class GetLocalImagesUseCase {
   GetLocalImagesUseCase({required this.imagesLocalRepository});

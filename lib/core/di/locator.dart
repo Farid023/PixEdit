@@ -3,17 +3,18 @@
 
 
 import 'package:get_it/get_it.dart';
-import 'package:photo_editor/data/repository/local/images_local_repository_impl.dart';
-import 'package:photo_editor/domain/repository/images_local_repository.dart';
-import 'package:photo_editor/domain/repository/images_repository.dart';
-import 'package:photo_editor/domain/usecase/get_images_use_case.dart';
-import 'package:photo_editor/domain/usecase/get_local_images_use_case.dart';
-import 'package:photo_editor/domain/usecase/get_u_int8_list_from_url_use_case.dart';
-import 'package:photo_editor/domain/usecase/pick_image_use_case.dart';
-import 'package:photo_editor/domain/usecase/save_to_local_db_use_case.dart';
-import 'package:photo_editor/domain/usecase/share_image_use_case.dart';
 
+
+import '../../data/repository/local/images_local_repository_impl.dart';
 import '../../data/repository/network/images_repository_impl.dart';
+import '../../domain/repository/images_local_repository.dart';
+import '../../domain/repository/images_repository.dart';
+import '../../domain/usecase/get_images_use_case.dart';
+import '../../domain/usecase/get_local_images_use_case.dart';
+import '../../domain/usecase/get_u_int8_list_from_url_use_case.dart';
+import '../../domain/usecase/pick_image_use_case.dart';
+import '../../domain/usecase/save_to_local_db_use_case.dart';
+import '../../domain/usecase/share_image_use_case.dart';
 
 final locator = GetIt.instance;
 

@@ -2,18 +2,19 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:photo_editor/core/di/locator.dart';
-import 'package:photo_editor/presentation/screens/edit_image/edit_image_screen.dart';
-import 'package:photo_editor/presentation/screens/gallery/cubit/gallery_cubit.dart';
-import 'package:photo_editor/presentation/screens/gallery/gallery_screen.dart';
-import 'package:photo_editor/presentation/screens/image_view/cubit/image_view_cubit.dart';
-import 'package:photo_editor/presentation/screens/image_view/image_view_screen.dart';
-import 'package:photo_editor/presentation/widgets/bottom_nav_bar/cubit/nav_bar_cubit.dart';
+
 
 import '../../domain/models/images.dart';
 import '../../presentation/screens/discover_images/cubit/discover_images_cubit.dart';
 import '../../presentation/screens/discover_images/widgets/images_grid.dart';
+import '../../presentation/screens/edit_image/edit_image_screen.dart';
+import '../../presentation/screens/gallery/cubit/gallery_cubit.dart';
+import '../../presentation/screens/gallery/gallery_screen.dart';
 import '../../presentation/screens/home/home_screen.dart';
+import '../../presentation/screens/image_view/cubit/image_view_cubit.dart';
+import '../../presentation/screens/image_view/image_view_screen.dart';
+import '../../presentation/widgets/bottom_nav_bar/cubit/nav_bar_cubit.dart';
+import '../di/locator.dart';
 
 class Pages {
   Pages._();

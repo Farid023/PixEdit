@@ -1,13 +1,13 @@
 import 'dart:developer';
 
+import 'package:PixEdit/presentation/screens/gallery/widgets/add_new_image_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:photo_editor/core/constants/app_strings.dart';
-import 'package:photo_editor/presentation/screens/gallery/cubit/gallery_cubit.dart';
-import 'package:photo_editor/presentation/screens/gallery/widgets/add_new_image_card.dart';
-import 'package:photo_editor/presentation/widgets/loading_indicator_circular.dart';
 
+import '../../../core/constants/app_strings.dart';
+import '../../widgets/loading_indicator_circular.dart';
 import '../../widgets/snackbars.dart';
+import 'cubit/gallery_cubit.dart';
 import 'widgets/gallery_image_card.dart';
 
 class GalleryScreen extends StatelessWidget {

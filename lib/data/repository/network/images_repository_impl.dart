@@ -5,8 +5,8 @@ import 'package:awesome_dio_interceptor/awesome_dio_interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:photo_editor/core/constants/endpoints.dart';
 
+import '../../../core/constants/endpoints.dart';
 import '../../../domain/models/images.dart';
 import '../../../domain/repository/images_repository.dart';
 

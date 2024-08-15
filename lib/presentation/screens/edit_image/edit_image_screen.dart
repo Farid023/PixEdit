@@ -1,13 +1,13 @@
 import 'dart:io';
 
+import 'package:PixEdit/core/extensions/context_extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:photo_editor/core/constants/app_strings.dart';
-import 'package:photo_editor/core/extensions/context_extensions.dart';
-import 'package:photo_editor/core/navigation/pages.dart';
 import 'package:pro_image_editor/pro_image_editor.dart';
 
+import '../../../core/constants/app_strings.dart';
+import '../../../core/navigation/pages.dart';
 import '../../../domain/models/images.dart';
 import '../image_view/cubit/image_view_cubit.dart';
 

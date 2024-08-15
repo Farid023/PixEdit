@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:photo_editor/core/constants/app_paddings.dart';
+
+import '../../core/constants/app_paddings.dart';
 
 class LoadingIndicatorCircular extends StatelessWidget {
   const LoadingIndicatorCircular({super.key});

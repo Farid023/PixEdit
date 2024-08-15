@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "az.gurfdev.photoeditor" "\0"
-            VALUE "FileDescription", "photo_editor" "\0"
+            VALUE "CompanyName", "az.gurfdev.pixedit" "\0"
+            VALUE "FileDescription", "PixEdit" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "photo_editor" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 az.gurfdev.photoeditor. All rights reserved." "\0"
-            VALUE "OriginalFilename", "photo_editor.exe" "\0"
-            VALUE "ProductName", "photo_editor" "\0"
+            VALUE "InternalName", "PixEdit" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 Gurf Development. All rights reserved." "\0"
+            VALUE "OriginalFilename", "PixEdit.exe" "\0"
+            VALUE "ProductName", "PixEdit" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

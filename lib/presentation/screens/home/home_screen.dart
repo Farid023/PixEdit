@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:photo_editor/core/constants/app_strings.dart';
-import 'package:photo_editor/presentation/widgets/bottom_nav_bar/cubit/nav_bar_cubit.dart';
 
+import '../../../core/constants/app_strings.dart';
 import '../../widgets/bottom_nav_bar/bottom_navbar.dart';
+import '../../widgets/bottom_nav_bar/cubit/nav_bar_cubit.dart';
 import '../discover_images/widgets/info_button.dart';
 
 class HomeScreen extends StatelessWidget {

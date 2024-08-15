@@ -1,11 +1,11 @@
 import 'dart:io';
 
+import 'package:PixEdit/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:photo_editor/core/constants/app_radiuses.dart';
-import 'package:photo_editor/core/extensions/context_extensions.dart';
-import 'package:photo_editor/presentation/screens/discover_images/widgets/image_card_shimmer.dart';
 
+import '../../../../core/constants/app_radiuses.dart';
 import '../../../../core/navigation/pages.dart';
+import '../../discover_images/widgets/image_card_shimmer.dart';
 
 class GalleryImageCard extends StatelessWidget {
   const GalleryImageCard({

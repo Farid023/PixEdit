@@ -4,9 +4,10 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:photo_editor/domain/usecase/get_u_int8_list_from_url_use_case.dart';
-import 'package:photo_editor/domain/usecase/save_to_local_db_use_case.dart';
-import 'package:photo_editor/domain/usecase/share_image_use_case.dart';
+
+import '../../../../domain/usecase/get_u_int8_list_from_url_use_case.dart';
+import '../../../../domain/usecase/save_to_local_db_use_case.dart';
+import '../../../../domain/usecase/share_image_use_case.dart';
 
 part 'image_view_state.dart';
 

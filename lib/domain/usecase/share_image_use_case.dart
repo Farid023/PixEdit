@@ -1,6 +1,5 @@
 import 'dart:typed_data';
-
-import 'package:photo_editor/domain/repository/images_local_repository.dart';
+import '../repository/images_local_repository.dart';
 
 class ShareImageUseCase {
   final ImagesLocalRepository _imagesLocalRepository;

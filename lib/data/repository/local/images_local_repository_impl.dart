@@ -5,9 +5,10 @@ import 'dart:typed_data';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:photo_editor/core/constants/app_strings.dart';
-import 'package:photo_editor/domain/repository/images_local_repository.dart';
 import 'package:share_plus/share_plus.dart';
+
+import '../../../core/constants/app_strings.dart';
+import '../../../domain/repository/images_local_repository.dart';
 
 class ImagesLocalRepositoryImpl implements ImagesLocalRepository {
   @override

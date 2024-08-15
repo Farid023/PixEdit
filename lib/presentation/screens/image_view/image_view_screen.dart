@@ -2,19 +2,20 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:PixEdit/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:photo_editor/core/constants/app_colors.dart';
-import 'package:photo_editor/core/constants/app_paddings.dart';
-import 'package:photo_editor/core/constants/app_strings.dart';
-import 'package:photo_editor/core/extensions/context_extensions.dart';
-import 'package:photo_editor/core/navigation/pages.dart';
-import 'package:photo_editor/presentation/screens/image_view/cubit/image_view_cubit.dart';
-import 'package:photo_editor/presentation/widgets/custom_button.dart';
-import 'package:photo_editor/presentation/widgets/loading_indicator_circular.dart';
 
+
+import '../../../core/constants/app_colors.dart';
+import '../../../core/constants/app_paddings.dart';
+import '../../../core/constants/app_strings.dart';
+import '../../../core/navigation/pages.dart';
 import '../../../domain/models/images.dart';
+import '../../widgets/custom_button.dart';
 import '../../widgets/custom_network_image.dart';
+import '../../widgets/loading_indicator_circular.dart';
+import 'cubit/image_view_cubit.dart';
 
 class ImageViewScreen extends StatelessWidget {
   const ImageViewScreen(

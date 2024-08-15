@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "498903621059",
+    "project_id": "pixedit-app",
+    "storage_bucket": "pixedit-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498903621059:android:a3c9b82c64e3e8b1e7b176",
+        "android_client_info": {
+          "package_name": "az.gurfdev.pixedit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmJhS73mIYTFqVdGyhwJqDydko-AN-QoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,8 +3,9 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:photo_editor/domain/usecase/get_local_images_use_case.dart';
-import 'package:photo_editor/domain/usecase/pick_image_use_case.dart';
+
+import '../../../../domain/usecase/get_local_images_use_case.dart';
+import '../../../../domain/usecase/pick_image_use_case.dart';
 
 part 'gallery_state.dart';
 

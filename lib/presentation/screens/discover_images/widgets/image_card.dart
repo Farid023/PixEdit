@@ -1,11 +1,11 @@
 import 'dart:developer';
 
+import 'package:PixEdit/core/extensions/context_extensions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:photo_editor/core/constants/app_radiuses.dart';
-import 'package:photo_editor/core/extensions/context_extensions.dart';
-import 'package:photo_editor/core/navigation/pages.dart';
 
+import '../../../../core/constants/app_radiuses.dart';
+import '../../../../core/navigation/pages.dart';
 import '../../../../domain/models/images.dart';
 import 'image_card_shimmer.dart';
 

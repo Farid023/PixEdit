@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:photo_editor/domain/repository/images_repository.dart';
+
+import '../repository/images_repository.dart';
 
 class GetUInt8ListFromUrlUseCase {
   GetUInt8ListFromUrlUseCase(this._imagesRepository);

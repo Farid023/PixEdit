@@ -1,10 +1,11 @@
+import 'package:PixEdit/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:photo_editor/core/constants/app_colors.dart';
-import 'package:photo_editor/core/constants/app_path.dart';
-import 'package:photo_editor/core/constants/app_radiuses.dart';
-import 'package:photo_editor/core/constants/app_strings.dart';
-import 'package:photo_editor/core/extensions/context_extensions.dart';
+
+import '../../../core/constants/app_colors.dart';
+import '../../../core/constants/app_path.dart';
+import '../../../core/constants/app_radiuses.dart';
+import '../../../core/constants/app_strings.dart';
 
 class BottomNavbar extends StatelessWidget {
   const BottomNavbar({
