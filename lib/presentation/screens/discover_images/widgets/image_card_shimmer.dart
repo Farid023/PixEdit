@@ -1,6 +1,6 @@
 
-import 'package:PixEdit/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:pixedit/core/extensions/context_extensions.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ImageCardShimmer extends StatelessWidget {

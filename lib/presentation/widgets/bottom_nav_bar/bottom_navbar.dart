@@ -1,6 +1,6 @@
-import 'package:PixEdit/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pixedit/core/extensions/context_extensions.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_path.dart';

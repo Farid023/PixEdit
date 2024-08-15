@@ -2,10 +2,9 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:PixEdit/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:pixedit/core/extensions/context_extensions.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_paddings.dart';
@@ -140,7 +139,6 @@ class ImageViewScreen extends StatelessWidget {
                         ],
                       );
                     });
-
               }
             },
           ),

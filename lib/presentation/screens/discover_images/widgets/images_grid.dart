@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:PixEdit/core/constants/app_radiuses.dart';
-import 'package:PixEdit/core/constants/app_strings.dart';
-import 'package:PixEdit/presentation/widgets/loading_indicator_circular.dart';
-import 'package:PixEdit/presentation/widgets/snackbars.dart';
+import 'package:pixedit/core/constants/app_radiuses.dart';
+import 'package:pixedit/core/constants/app_strings.dart';
+import 'package:pixedit/presentation/widgets/loading_indicator_circular.dart';
+import 'package:pixedit/presentation/widgets/snackbars.dart';
 
 import '../../../../domain/models/images.dart';
 import '../../discover_images/cubit/discover_images_cubit.dart';

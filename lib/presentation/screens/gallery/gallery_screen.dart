@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:PixEdit/presentation/screens/gallery/widgets/add_new_image_card.dart';
+import 'package:pixedit/presentation/screens/gallery/widgets/add_new_image_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

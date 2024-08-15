@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:PixEdit/core/extensions/context_extensions.dart';
+import 'package:pixedit/core/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_radiuses.dart';
