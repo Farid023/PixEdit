@@ -4,6 +4,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pixedit/domain/usecase/is_first_time_open_use_case.dart';
+import 'package:pixedit/domain/usecase/review_app_use_case.dart';
 
 import '../../../../domain/usecase/get_u_int8_list_from_url_use_case.dart';
 import '../../../../domain/usecase/save_to_local_db_use_case.dart';
@@ -12,20 +14,26 @@ import '../../../../domain/usecase/share_image_use_case.dart';
 part 'image_view_state.dart';
 
 class ImageViewCubit extends Cubit<ImageViewState> {
-  ImageViewCubit(this._saveToLocalDbUseCase, this._getUInt8ListFromUrlUseCase,
-      this._shareImageUseCase)
+  ImageViewCubit(
+      this._saveToLocalDbUseCase,
+      this._getUInt8ListFromUrlUseCase,
+      this._shareImageUseCase,
+      this.isFirstTimeOpenUseCase,
+      this.reviewAppUseCase)
       : super(ImageViewInitial());
 
   final SaveToLocalDbUseCase _saveToLocalDbUseCase;
   final GetUInt8ListFromUrlUseCase _getUInt8ListFromUrlUseCase;
   final ShareImageUseCase _shareImageUseCase;
+  final IsFirstTimeOpenUseCase isFirstTimeOpenUseCase;
+  final ReviewAppUseCase reviewAppUseCase;
 
   Uint8List? imageBytes;
 
   Future<void> saveToLocalDB(
       {required Uint8List? imageBytes, required String? imageUrl}) async {
     try {
-      emit(ImageViewLoading());
+      emit(ImageSaveLoading());
       Uint8List? loadedImageBytes = imageBytes;
       if (imageUrl != null) {
         loadedImageBytes =
@@ -37,10 +45,10 @@ class ImageViewCubit extends Cubit<ImageViewState> {
         await _saveToLocalDbUseCase.execute(loadedImageBytes);
         emit(ImageSaveSuccess());
       } else {
-        emit(ImageViewFailure(message: "Image is null"));
+        emit(ImageSaveFailure(message: "Image is null"));
       }
     } catch (e) {
-      emit(ImageViewFailure(message: "Failed to save image: ${e.toString()}"));
+      emit(ImageSaveFailure(message: "Failed to save image: ${e.toString()}"));
       throw Exception(e);
     }
   }
@@ -69,6 +77,19 @@ class ImageViewCubit extends Cubit<ImageViewState> {
       }
     } catch (e) {
       emit(ImageViewFailure(message: 'Failed to share image: ${e.toString()}'));
+    }
+  }
+
+  void reviewApp() async {
+    try {
+      final isFirstTimeOpen = await isFirstTimeOpenUseCase.execute();
+
+      log("isFirstTimeOpen: $isFirstTimeOpen");
+      if (isFirstTimeOpen) {
+        await reviewAppUseCase.execute();
+      }
+    } catch (e) {
+      throw Exception(e);
     }
   }
 

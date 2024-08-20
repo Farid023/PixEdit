@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import '../../domain/models/images.dart';
 import '../../presentation/screens/discover_images/cubit/discover_images_cubit.dart';
 import '../../presentation/screens/discover_images/widgets/images_grid.dart';
@@ -25,8 +24,9 @@ class Pages {
   static Widget imageViewScreen(
           {Photo? item, Uint8List? imageBytes, String? imagePath}) =>
       BlocProvider(
-        create: (context) =>
-            ImageViewCubit(locator(), locator(), locator())..resetState(),
+        create: (context) => ImageViewCubit(
+            locator(), locator(), locator(), locator(), locator())
+          ..resetState(),
         child: ImageViewScreen(
             item: item, imageBytes: imageBytes, imagePath: imagePath),
       );
@@ -42,7 +42,8 @@ class Pages {
   static Widget editImageScreen(
           {Photo? item, Uint8List? imageBytes, String? imagePath}) =>
       BlocProvider(
-        create: (context) => ImageViewCubit(locator(), locator(), locator()),
+        create: (context) => ImageViewCubit(
+            locator(), locator(), locator(), locator(), locator()),
         child: EditImageScreen(
             item: item, imageBytes: imageBytes, imagePath: imagePath),
       );

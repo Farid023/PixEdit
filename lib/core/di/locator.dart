@@ -3,6 +3,8 @@
 
 
 import 'package:get_it/get_it.dart';
+import 'package:pixedit/domain/usecase/is_first_time_open_use_case.dart';
+import 'package:pixedit/domain/usecase/review_app_use_case.dart';
 
 
 import '../../data/repository/local/images_local_repository_impl.dart';
@@ -36,6 +38,8 @@ Future<void> setupLocator () async{
   locator.registerLazySingleton<GetUInt8ListFromUrlUseCase>(()=> GetUInt8ListFromUrlUseCase(locator()));
   locator.registerLazySingleton<PickImageUseCase>(()=> PickImageUseCase(imagesLocalRepository: locator()));
   locator.registerLazySingleton<ShareImageUseCase>(()=> ShareImageUseCase(imagesLocalRepository: locator()));
+  locator.registerLazySingleton<IsFirstTimeOpenUseCase>(()=> IsFirstTimeOpenUseCase(locator()));
+  locator.registerLazySingleton<ReviewAppUseCase>(()=> ReviewAppUseCase(locator()));
 
 
 

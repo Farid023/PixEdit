@@ -88,7 +88,8 @@ class ImageViewScreen extends StatelessWidget {
                     ),
                   ),
                 );
-              } else if (state is ImageViewLoading) {
+              } else if (state is ImageViewLoading ||
+                  state is ImageSaveLoading) {
                 return const Padding(
                   padding: AppPaddings.a24,
                   child: LoadingIndicatorCircular(),
@@ -107,12 +108,14 @@ class ImageViewScreen extends StatelessWidget {
                               imagePath: imagePath));
                         },
                         text: AppStrings.editImage),
-                    CustomButton(
-                        onPressed: () async {
-                          await cubit.saveToLocalDB(
-                              imageBytes: imageBytes, imageUrl: imageUrl);
-                        },
-                        text: AppStrings.saveToGallery),
+                    if (imageUrl != null || imageBytes != null) ...[
+                      CustomButton(
+                          onPressed: () async {
+                            await cubit.saveToLocalDB(
+                                imageBytes: imageBytes, imageUrl: imageUrl);
+                          },
+                          text: AppStrings.saveToGallery),
+                    ]
                   ],
                 );
               }
@@ -131,6 +134,7 @@ class ImageViewScreen extends StatelessWidget {
                           TextButton(
                               onPressed: () {
                                 context.back();
+                                cubit.reviewApp();
                               },
                               child: const Text(
                                 "OK",

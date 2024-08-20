@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -68,7 +69,6 @@ class ImagesLocalRepositoryImpl implements ImagesLocalRepository {
   @override
   Future<void> shareImage({required Uint8List imageBytes}) async {
     try {
-
       final tempDir = await getTemporaryDirectory();
       final file = await File('${tempDir.path}/shared_image.jpg').create();
       await file.writeAsBytes(imageBytes);
@@ -91,6 +91,35 @@ class ImagesLocalRepositoryImpl implements ImagesLocalRepository {
     } catch (e) {
       log('Error when saving image: $e');
       return null;
+    }
+  }
+
+  @override
+  Future<bool> showRating() async {
+    try {
+      final inAppReview = InAppReview.instance;
+      final available = await inAppReview.isAvailable();
+      if (available) {
+       await inAppReview.requestReview();
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> isFirstTimeOpen() async {
+    const key = "FIRST_TIME_OPEN";
+    try {
+      final box = await Hive.openBox("imagesApp");
+      dynamic isFirstTime = await box.get(key, defaultValue: true);
+      if (isFirstTime != null && isFirstTime == true) {
+        await box.put(key, false);
+      }
+      return isFirstTime;
+    } catch (e) {
+      throw Exception(e);
     }
   }
 }

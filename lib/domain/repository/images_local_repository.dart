@@ -12,4 +12,9 @@ abstract class ImagesLocalRepository {
   Future<void> shareImage({required Uint8List imageBytes});
 
 
+  Future<bool> isFirstTimeOpen();
+
+  Future<bool> showRating();
+
+
 }

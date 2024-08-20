@@ -1,1 +1,21 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"pixedit-app","appId":"1:498903621059:android:a3c9b82c64e3e8b1e7b176","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"pixedit-app","configurations":{"android":"1:498903621059:android:a3c9b82c64e3e8b1e7b176"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "pixedit-app",
+          "appId": "1:498903621059:android:a3c9b82c64e3e8b1e7b176",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "pixedit-app",
+          "configurations": {
+            "android": "1:498903621059:android:a3c9b82c64e3e8b1e7b176"
+          }
+        }
+      }
+    }
+  }
+}
